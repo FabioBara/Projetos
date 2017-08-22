@@ -19,8 +19,10 @@ function imcFun(i){
 
     }
     if(verificaAtributos){
-        var imc = peso / (altura * altura);
+        var imc = calculaIMC(peso, altura);
         pacientes[i].querySelector(".info-imc").textContent = imc.toFixed(2);
-    }
-    
+    }   
+}
+function calculaIMC(peso, altura){
+    return  peso / (altura * altura);
 }
