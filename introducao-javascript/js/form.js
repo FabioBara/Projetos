@@ -8,13 +8,14 @@ botao.addEventListener("click", function (){
 
     var paciente = obtemDadosForm(form);
 
-    pacienteTr = montaTr(paciente);
-
-    var tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr);
-
-    form.reset();
-
+    if(validaPaciente(paciente)){
+        pacienteTr = montaTr(paciente);
+        
+        var tabela = document.querySelector("#tabela-pacientes");
+        tabela.appendChild(pacienteTr);
+        
+        form.reset(); 
+    }
 });
 
  function obtemDadosForm(form){
@@ -51,3 +52,36 @@ botao.addEventListener("click", function (){
      td.classList.add("info-"+classe);
      return td;
  }
+
+function validaPaciente(paciente){
+    var retorno = true;
+    var ul = document.querySelector("#mensagem-erro");
+    ul.innerHTML = "";
+
+    if(paciente.nome.length == 0){
+        retorno = false;
+        ul.appendChild(criaLi("* Paciente com nome invalido "));
+    }
+    if(paciente.gordura.length == 0){
+        retorno = false;
+        ul.appendChild(criaLi("* Paciente com gordura invalida "));
+    }
+
+    if(!validaAltura(paciente.altura)){
+        retorno = false;
+        ul.appendChild(criaLi("* Paciente com altura invalida "));
+    }
+
+    if(!validaPeso(paciente.peso)){
+        retorno = false;
+        ul.appendChild(criaLi("* Paciente com peso invalido "));
+    }
+    return retorno;
+}
+
+function criaLi(menssagem){
+    var li = document.createElement("li");
+    li.textContent = menssagem ;
+    li.classList.add("mensagem-erro");
+    return li;
+}

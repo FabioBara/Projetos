@@ -3,7 +3,7 @@ function imcFun(i){
     var altura = pacientes[i].querySelector(".info-altura").textContent;
     var verificaAtributos = true;
     
-    if(peso < 0 || peso > 200){
+    if(!validaPeso(peso)){
         
         pacientes[i].classList.add("paciente-invalido");
         pacientes[i].querySelector(".info-imc").textContent = "Peso invalido!";
@@ -11,7 +11,7 @@ function imcFun(i){
 
     }
     
-    if(altura< 0 || altura > 2.5){
+    if(!validaAltura(altura)){
         
         pacientes[i].classList.add("paciente-invalido");
         pacientes[i].querySelector(".info-imc").textContent = "Altura invalida!";
@@ -25,4 +25,18 @@ function imcFun(i){
 }
 function calculaIMC(peso, altura){
     return  peso / (altura * altura);
+}
+
+function validaPeso(peso){
+    if(peso > 0 && peso < 200){
+        return true;
+    }
+    return false;
+}
+
+function validaAltura(altura){
+    if(altura > 0 && altura < 2.5){
+        return true
+    }
+    return false;
 }
