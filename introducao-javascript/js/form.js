@@ -9,14 +9,23 @@ botao.addEventListener("click", function (){
     var paciente = obtemDadosForm(form);
 
     if(validaPaciente(paciente)){
-        pacienteTr = montaTr(paciente);
         
-        var tabela = document.querySelector("#tabela-pacientes");
-        tabela.appendChild(pacienteTr);
+        adicionaAlunoNaTabela(paciente);
         
         form.reset(); 
     }
 });
+
+function adicionaAlunoNaTabela(paciente){
+
+
+    pacienteTr = montaTr(paciente);
+    
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
+}
+
+
 
  function obtemDadosForm(form){
 
