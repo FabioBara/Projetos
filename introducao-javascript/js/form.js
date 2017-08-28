@@ -7,8 +7,8 @@ botao.addEventListener("click", function (){
     var form = document.querySelector("#formAdiciona");
 
     var paciente = obtemDadosForm(form);
-
     if(validaPaciente(paciente)){
+        
         
         adicionaAlunoNaTabela(paciente);
         
@@ -20,7 +20,6 @@ function adicionaAlunoNaTabela(paciente){
 
 
     pacienteTr = montaTr(paciente);
-    
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 }
@@ -31,8 +30,8 @@ function adicionaAlunoNaTabela(paciente){
 
     var paciente = {
         nome: form.nome.value,
-        altura: form.altura.value,
         peso: form.peso.value,
+        altura: form.altura.value,
         gordura: form.gordura.value,
         imc: calculaIMC(form.peso.value, form.altura.value).toFixed(2)
     }
@@ -44,10 +43,9 @@ function adicionaAlunoNaTabela(paciente){
     var pacienteTr = document.createElement("tr");
     pacienteTr.classList.add("paciente");
 
-    
         pacienteTr.appendChild(criaTd(paciente.nome, "nome"));
-        pacienteTr.appendChild(criaTd(paciente.altura, "altura"));
         pacienteTr.appendChild(criaTd(paciente.peso, "peso"));
+        pacienteTr.appendChild(criaTd(paciente.altura, "altura"));
         pacienteTr.appendChild(criaTd(paciente.gordura, "gordura"));
         pacienteTr.appendChild(criaTd(paciente.imc, "imc"));
         
